@@ -11,7 +11,7 @@ License:	ASL 2.0
 %if ! %{gcj_support}
 BuildArch:	noarch
 %endif
-BuildRequires:	ant java-devel-icedtea
+BuildRequires:	ant java-devel
 %if %{gcj_support}
 BuildRequires:	java-gcj-compat-devel
 Requires(post):	java-gcj-compat
