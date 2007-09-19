@@ -3,7 +3,7 @@
 Name:		jhlabs-filters
 Summary:	Java Image Processing Classes
 Version:	0
-Release:	%mkrel 1
+Release:	%mkrel 2
 URL:		http://www.jhlabs.com/ip/filters/index.html
 Source:		http://www.jhlabs.com/ip/filters/Filters.zip
 Group:		Development/Java
