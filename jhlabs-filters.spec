@@ -25,7 +25,9 @@ Java Image Processing Classes.
 %{__find} . -name '*.jar' -or -name '*.class' -exec %{__rm} -f {} \;
 
 %build
-%ant
+CLASSPATH=$(build-classpath ant ant-launcher) \
+	JAVA_HOME=/usr/lib/jvm/java \
+	/usr/bin/ant
 
 %install
 %{__rm} -Rf %{buildroot}
