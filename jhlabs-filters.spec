@@ -7,6 +7,7 @@ Release:	%mkrel 2
 URL:		http://www.jhlabs.com/ip/filters/index.html
 Source:		http://www.jhlabs.com/ip/filters/Filters.zip
 Group:		Development/Java
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 License:	ASL 2.0
 %if ! %{gcj_support}
 BuildArch:	noarch
