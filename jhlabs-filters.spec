@@ -1,63 +1,56 @@
-%define gcj_support %{?_with_gcj_support:1}%{!?_with_gcj_support:%{?_without_gcj_support:0}%{!?_without_gcj_support:%{?_gcj_support:%{_gcj_support}}%{!?_gcj_support:0}}}
+Name:           jhlabs-filters
+Version:        2.0.235
+Release:        %mkrel 0.0.1
+Summary:        Java Image Filters
+License:        Apache License
+Group:          Development/Java
+Url:            http://www.jhlabs.com/ip/filters/
+Source0:        http://www.jhlabs.com/ip/filters/Filters.zip
+Source1:        build.xml
+BuildRequires:  jpackage-utils
+BuildRequires:  java-rpmbuild 
+BuildRequires:  ant
+BuildArch:      noarch
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
-Name:		jhlabs-filters
-Summary:	Java Image Processing Classes
-Version:	0
-Release:	%mkrel 2
-URL:		http://www.jhlabs.com/ip/filters/index.html
-Source:		http://www.jhlabs.com/ip/filters/Filters.zip
-Group:		Development/Java
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-License:	ASL 2.0
-%if ! %{gcj_support}
-BuildArch:	noarch
-%endif
-BuildRequires:	ant java-devel
-%if %{gcj_support}
-BuildRequires:	java-gcj-compat-devel
-Requires(post):	java-gcj-compat
-Requires(postun):	java-gcj-compat
-%endif
 %description
-Java Image Processing Classes.
+The filters are all standard Java BufferedImageOps and can be plugged directly into existing programs. 
+
+%package        javadoc
+Summary:        Javadoc for %{oname}
+Group:          Development/Java
+
+%description javadoc
+Javadoc for %{name}.
 
 %prep
-%setup -q -c filters
-%{__find} . -name '*.jar' -or -name '*.class' -exec %{__rm} -f {} \;
+%setup -q -c %{name}-%{version}
+cp %{SOURCE1} build.xml
+%remove_java_binaries
 
 %build
-CLASSPATH=$(build-classpath ant ant-launcher) \
-	JAVA_HOME=/usr/lib/jvm/java \
-	/usr/bin/ant
+%{ant} -f build.xml jar javadoc
 
 %install
-%{__rm} -Rf %{buildroot}
-%{__mkdir_p} %{buildroot}%{_javadir}
-%{__cp} -p dist/Filters.jar %{buildroot}%{_javadir}
+rm -rf %{buildroot}
+install -m644 dist/Filters.jar -D %{buildroot}%{_javadir}/%{name}-%{version}.jar
+ln -s %{name}-%{version}.jar %{buildroot}%{_javadir}/%{name}.jar
 
-%if %{gcj_support}
-%{_bindir}/aot-compile-rpm
-%endif
+install -d %{buildroot}%{_javadocdir}/%{name}-%{version}
+cp -r docs/* %{buildroot}%{_javadocdir}/%{name}-%{version}
+ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name}
 
-%if %{gcj_support}
-%post
-if [ -x %{_bindir}/rebuild-gcj-db ]
-then
-  %{_bindir}/rebuild-gcj-db
-fi
-%endif
+%create_jar_links
 
-%if %{gcj_support}
-%postun
-if [ -x %{_bindir}/rebuild-gcj-db ]
-then
-  %{_bindir}/rebuild-gcj-db
-fi
-%endif
+%clean
+rm -rf %{buildroot}
 
 %files
-%{_javadir}/Filters.jar
-%if %{gcj_support}
-%{_libdir}/gcj/%{name}
-%endif
+%defattr(644,root,root,755)
+%{_javadir}/%{name}.jar
+%{_javadir}/%{name}-%{version}.jar
 
+%files javadoc
+%defattr(644,root,root,755)
+%{_javadocdir}/%{name}
+%{_javadocdir}/%{name}-%{version}
