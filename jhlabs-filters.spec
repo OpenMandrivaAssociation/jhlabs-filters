@@ -17,7 +17,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 The filters are all standard Java BufferedImageOps and can be plugged directly into existing programs. 
 
 %package        javadoc
-Summary:        Javadoc for %{oname}
+Summary:        Javadoc for %{name}
 Group:          Development/Java
 
 %description javadoc
