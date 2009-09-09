@@ -1,6 +1,6 @@
 Name:           jhlabs-filters
 Version:        2.0.235
-Release:        %mkrel 0.0.2
+Release:        %mkrel 0.0.3
 Summary:        Java Image Filters
 License:        Apache License
 Group:          Development/Java
