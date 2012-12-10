@@ -1,6 +1,6 @@
 Name:           jhlabs-filters
 Version:        2.0.235
-Release:        %mkrel 0.0.4
+Release:        %mkrel 0.0.5
 Summary:        Java Image Filters
 License:        Apache License
 Group:          Development/Java
@@ -14,7 +14,8 @@ BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
-The filters are all standard Java BufferedImageOps and can be plugged directly into existing programs. 
+The filters are all standard Java BufferedImageOps
+and can be plugged directly into existing programs. 
 
 %package        javadoc
 Summary:        Javadoc for %{name}
@@ -54,3 +55,35 @@ rm -rf %{buildroot}
 %defattr(644,root,root,755)
 %{_javadocdir}/%{name}
 %{_javadocdir}/%{name}-%{version}
+
+
+%changelog
+* Fri Dec 10 2010 Oden Eriksson <oeriksson@mandriva.com> 2.0.235-0.0.4mdv2011.0
++ Revision: 619826
+- the mass rebuild of 2010.0 packages
+
+* Wed Sep 09 2009 Thierry Vignaud <tv@mandriva.org> 2.0.235-0.0.3mdv2010.0
++ Revision: 436047
+- rebuild
+
+* Thu Feb 21 2008 Alexander Kurtakov <akurtakov@mandriva.org> 2.0.235-0.0.2mdv2008.1
++ Revision: 173720
+- bump release
+- fix javadoc package summary
+
+* Thu Feb 21 2008 Alexander Kurtakov <akurtakov@mandriva.org> 2.0.235-0.0.1mdv2008.1
++ Revision: 173708
+- add build.xml
+- clean spec file
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - fix no-buildroot-tag
+
+* Wed Sep 19 2007 Nicolas Vigier <nvigier@mandriva.com> 0-2mdv2008.0
++ Revision: 90640
+- rebuild
+
+* Thu Sep 13 2007 Nicolas Vigier <nvigier@mandriva.com> 0-1mdv2008.0
++ Revision: 85209
+- Import jhlabs-filters
+
