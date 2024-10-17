@@ -4,7 +4,7 @@ Release:        0.0.6
 Summary:        Java Image Filters
 License:        Apache License
 Group:          Development/Java
-Url:            http://www.jhlabs.com/ip/filters/
+Url:            https://www.jhlabs.com/ip/filters/
 Source0:        http://www.jhlabs.com/ip/filters/Filters.zip
 Source1:        build.xml
 BuildRequires:  jpackage-utils
